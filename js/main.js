@@ -44,10 +44,9 @@ const datosCliente = new Cliente("Marco","Busto","Belgrano 613","34724-30648","m
 const cantidad = parseFloat(prompt("Ingrese la cantidad de préstamos que quiere obtener':"));
 const prestamos=[];
 for (let i=1; i<= cantidad; i++){
-        let auxPrestamo    = new Prestamo(0);
-        auxPrestamo.solicitarMonto();
-        auxPrestamo.calcularPrestamo();
-        prestamos.push(auxPrestamo);
+        Prestamo.solicitarMonto();
+        Prestamo.calcularPrestamo();
+        prestamos.push();
         alert("El monto final a pagar es: " + auxPrestamo.montofinal);
 }
 
