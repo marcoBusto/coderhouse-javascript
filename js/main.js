@@ -44,12 +44,20 @@ const datosCliente = new Cliente("Marco","Busto","Belgrano 613","34724-30648","m
 const cantidad = parseFloat(prompt("Ingrese la cantidad de préstamos que quiere obtener':"));
 const prestamos=[];
 for (let i=1; i<= cantidad; i++){
-        Prestamo.solicitarMonto();
-        Prestamo.calcularPrestamo();
-        prestamos.push();
+        let auxPrestamo    = new Prestamo(0);
+        auxPrestamo.solicitarMonto();
+        auxPrestamo.calcularPrestamo();
+        prestamos.push(auxPrestamo);
         alert("El monto final a pagar es: " + auxPrestamo.montofinal);
 }
+/*metodo find*/ 
+//const detalle = parseFloat(prompt("Ingrese el monto del credito que desea ver el detalle':"));
+//prestamos.find(detalle => prestamos.monto == detalle)
+//console.log("El monto sin intereses es:"+detalle);
+//console.log("El monto con intereses es:"+prestamos.montofinal);
+
+
+const formulario = document.getElementById('formulario');
+console.log(formulario);
 
 alert("¡Gracias por confiar en nosotros!");
-console.log(datosCliente);
-console.table(prestamos);
