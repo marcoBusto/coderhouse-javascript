@@ -38,7 +38,6 @@ class Cliente{
         this.email= email;
         }
 }
-const datosCliente = new Cliente("Marco","Busto","Belgrano 613","34724-30648","msbusto@gmail.com");
 
 
 const cantidad = parseFloat(prompt("Ingrese la cantidad de préstamos que quiere obtener':"));
@@ -57,7 +56,7 @@ for (let i=1; i<= cantidad; i++){
 //console.log("El monto con intereses es:"+prestamos.montofinal);
 
 
-const formulario = document.getElementById('formulario');
-console.log(formulario);
+//const formulario = document.getElementById('formulario');
+//console.log(formulario);
 
 alert("¡Gracias por confiar en nosotros!");
