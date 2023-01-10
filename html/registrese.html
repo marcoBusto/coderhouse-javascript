@@ -23,20 +23,26 @@
       </div>
       <!--menu-->
       <article id="contenidos" class="container-fluid">
-          <form  id="formulario" class="formulario" onsubmit="return false" action="index.html">
+          <form  id="formulario" class="formulario" onsubmit="return false" action="registrese.html">
+            <div class="form-group">
+              <label for="nombre">Nombre:</label>
+                <input type="text" id="nomLog" name="nomLog" class="form-control form-control-sm" required/>
+            </div>
+            <div class="form-group">
+              <label for="apellido">Apellido:</label>
+                <input type="text" id="apeLog" name="apeLog" class="form-control form-control-sm" required/>
+            </div>
             <div class="form-group">
                 <label for="nombre">Usuario:</label>
                   <input type="email" id="usuario" name="usuario" class="form-control form-control-sm" required/>
             </div>
             <div class="form-group">
               <label for="password">Password:</label>
-                  <input type="password" id="password" name="password" class="form-control form-control-sm"  required/>
-            </div>
-            <div class="text-center">
-              <p>¿No estás registrado? <a href="/html/registrese.html">Registrese</a></p>
+                  <input type="password" id="password" class="form-control form-control-sm" name="password" required/>
             </div>
             <div class="button">
-                <button type="submit" id="enviar" value="submit" class="btn btn-primary">Iniciar Sesión</button>             
+                <button type="submit" id="enviar" value="submit" class="btn btn-primary">Registrarse</button>  
+                <button type="reset" id="reset" value="reset" class="btn btn-primary">Limpiar Datos</button>           
             </div>
         </ul>
     </form>
@@ -48,6 +54,6 @@
            
       </span> 
     </footer> 
-    <script src="/js/login.js"></script>  
+    <script src="../js/registrarse.js"></script>  
 </body>
 </html>

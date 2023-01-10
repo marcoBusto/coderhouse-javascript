@@ -8,7 +8,7 @@
     grid-template-rows: auto auto auto auto;
     grid-template-columns: auto auto auto;
     background-image: url("../img/fondo.jpg");
-    color: whitesmoke;
+    color: gold;
     font-family: Arial, Helvetica, sans-serif;
     min-height: 500px;
     background-attachment: fixed;
@@ -83,7 +83,7 @@
   #contenidos {
     grid-area: contenidos;
     float: left;
-    color: whitesmoke;
+    color: gold;
     margin: 5% 5% 5% 5%;
   }
   #contenidos img {
@@ -96,7 +96,10 @@
     height: auto;
     width: 80%;
   }
+#contenidos form {
+  color:gold;
 
+}
   /*pie de página*/
   #pie {
     grid-area: footer;
@@ -110,6 +113,7 @@
  #formulario{
   width: 50%;
   height: 50%;
+  margin-left: 18%;
  }
 
   /*pie de página*/
@@ -218,7 +222,10 @@
     height: auto;
     width: 80%;
   }
-
+  #contenidos form {
+    color:gold;
+  
+  }  
   /*pie de página*/
   #pie {
     float: center;
