@@ -1,13 +1,26 @@
-//Constante formulario
+// fetch a api 
+const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': 'AzLLJ7Ql85zQwUzxDx25ABGsFtCWwAqo8lRGP5mX',
+		'X-RapidAPI-Host': 'api.currencyapi.com'
+	}
+};
+
+fetch('https://api.currencyapi.com/v3/latest?apikey=AzLLJ7Ql85zQwUzxDx25ABGsFtCWwAqo8lRGP5mX&currencies=EUR%2CUSD%2CCAD&base_currency=ARS', options)
+	.then(response => response.json())
+	.then(response => console.log(response))
+	.catch(err => console.error(err));
+
+//Constantes 
 const formulario = document.querySelector('#formulario');
 
-//Constantes calculos
 const anual30 = 30;
 const anual40 = 40;
 const anual50 = 50;
 const impuesto=5;
 let resultado=0;
-// funcion calcular credito
+// calculos
 function calcular(datosStorageMonto){
         if (datosStorageMonto <= 50000) {
                 resultado = (parseInt(datosStorageMonto)*anual50)/100+parseInt(datosStorageMonto);
@@ -20,9 +33,7 @@ function calcular(datosStorageMonto){
                 console.log(resultado);
         }
 } 
-//variable listado
-let listado = document.createElement('div');
-
+ 
 
 //Formulario
 formulario.addEventListener('submit',(event) => { 
@@ -34,15 +45,12 @@ formulario.addEventListener('submit',(event) => {
        email = document.querySelector('#email').value;
        cantCred = document.querySelector('#cantCred').value;    
        
+       let arrCliente = [nombre,apellido,direccion,numTel,email,cantCred]
+
        //localstorage ///
-       localStorage.setItem("nombre", JSON.stringify(nombre));
-       localStorage.setItem("apellido", JSON.stringify(apellido));
-       localStorage.setItem("direccion", JSON.stringify(direccion));
-       localStorage.setItem("telefono", JSON.stringify(numTel));
-       localStorage.setItem("email", JSON.stringify(email));
-       localStorage.setItem("monto", JSON.parse(cantCred));
+       localStorage.setItem("cliente", JSON.stringify(arrCliente));
        
-       /*Limpiando los campos o inputs*/
+  
        document.querySelector("#nombre").value = "";
        document.querySelector("#apellido").value = "";
        document.querySelector("#direccion").value = "";
@@ -51,53 +59,55 @@ formulario.addEventListener('submit',(event) => {
        document.querySelector("#cantCred").value = "";
        
        
-      // ocultar formulario //
-      formulario.style.display = 'none';
 
-            
-
-      // crear boton mostrar registro
-      let btn1 = document.createElement("button");
-      btn1.innerHTML = "Mostrar Registro";
-      contenidos.appendChild(btn1);
-      btn1.classList.add('btn-primary');
-      
-      // evento mostrar registro
-      btn1.addEventListener('click',() => {
-        let datosStoragNom = localStorage.getItem('nombre');
-        let datosStoragApe = localStorage.getItem('apellido');
-        let datosStorageDir = localStorage.getItem('direccion');
-        let datosStorageTel = localStorage.getItem('telefono');
-        let datosStorageEmail = localStorage.getItem('email');
-        let datosStorageMonto = localStorage.getItem('monto');
-
+       formulario.style.display = 'none';         
        
-        calcular(datosStorageMonto);
-        // crea listado de registro de local storage
-        listado.innerHTML = `Nombre: ${datosStoragNom} </br> Apellido: ${datosStoragApe} </br> Dirección:${datosStorageDir} </br> Teléfono:${ datosStorageTel} </br> Email:${datosStorageEmail} </br> Monto:${datosStorageMonto} </br>Monto a devolver en un año:${resultado}</br></br>\n`;
-        listado.style.marginBottom='60px';
-        contenidos.appendChild(listado);  
-      })
+       let listado = document.createElement('div');  
+       let arrClientestorage =localStorage.getItem('cliente');
+       arrClientestorage = JSON.parse(arrClientestorage);
+       let datosStorageMonto = arrClientestorage[5];
+       calcular(datosStorageMonto)
+       
+      
+        
 
-      //Crear boton eliminar registro
+       for(elemento of arrClientestorage){
+             listado.innerHTML =`Nombre: ${arrClientestorage[0]} </br> Apellido: ${arrClientestorage[1]} </br> Dirección:${arrClientestorage[2]} </br> Teléfono:${ arrClientestorage[3]} </br> Email:${arrClientestorage[4]} </br> Monto:${arrClientestorage[5]} </br>Monto a devolver en un año:${resultado}</br></br>\n`;
+        }
+      
+      listado.style.color='gold'
+      listado.style.marginBottom='60px';
+      contenidos.appendChild(listado);  
+
+      //Crear boton 
       let btn2 = document.createElement("button");
       btn2.innerHTML = "Eliminar Registro";
       contenidos.appendChild(btn2);
       btn2.classList.add('btn-primary');
       btn2.style.marginLeft='3px';
-      
-     
-      
-     //eliminar simulación y eventro click
+ 
+     //eliminar simulación 
       btn2.addEventListener('click',() => {
-      contenidos.removeChild(listado); 
-       localStorage.removeItem("nombre", JSON.stringify(nombre));
-       localStorage.removeItem("apellido", JSON.stringify(apellido));
-       localStorage.removeItem("direccion", JSON.stringify(direccion));
-       localStorage.removeItem("telefono", JSON.stringify(numTel));
-       localStorage.removeItem("email", JSON.stringify(email));
-       localStorage.removeItem("monto", JSON.parse(cantCred));
-      location.reload();
+        contenidos.removeChild(listado);
+        Swal.fire({
+                title: '¿Desea eliminar el registro?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si'
+        }).then((result) => {
+                if (result.isConfirmed) {     
+                localStorage.removeItem('cliente');        
+                Swal.fire(
+                        'Borrado',
+                        'Su registro fue eliminado',
+                        'success'
+                        )
+                location.reload();
+                }
+        })
+     
       })
-})
-    
+
+})    

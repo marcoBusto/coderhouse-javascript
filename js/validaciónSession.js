@@ -1,7 +1,12 @@
-let datosStorageUsuario = JSON.parse(localStorage.getItem('usuario'));
-let datosStoragePassword = JSON.parse(localStorage.getItem('password'));
-console.log(datosStorageUsuario);
+//validar sesión
+let datosStorage = JSON.parse(localStorage.getItem('usuarios'));     
 
-if (datosStorageUsuario === null && datosStoragePassword === null) {
-    window.location.href="../index.html";
-}
+
+const myPromise = new Promise((resolve, reject) => {
+    if (datosStorage === null) {
+     resolve   (window.location.href="../index.html");
+    }  else{
+     reject (console.log('Sesión exitosa'));  
+    }      
+  });
+  
