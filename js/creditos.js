@@ -47,7 +47,7 @@ formulario.addEventListener('submit',(event) => {
        
        let arrCliente = [nombre,apellido,direccion,numTel,email,cantCred]
 
-       //localstorage ///
+ //localstorage ///
        localStorage.setItem("cliente", JSON.stringify(arrCliente));
        
   
@@ -66,18 +66,22 @@ formulario.addEventListener('submit',(event) => {
        let arrClientestorage =localStorage.getItem('cliente');
        arrClientestorage = JSON.parse(arrClientestorage);
        let datosStorageMonto = arrClientestorage[5];
-       calcular(datosStorageMonto)
-       
-      
-        
+       calcular(datosStorageMonto);
 
        for(elemento of arrClientestorage){
              listado.innerHTML =`Nombre: ${arrClientestorage[0]} </br> Apellido: ${arrClientestorage[1]} </br> Dirección:${arrClientestorage[2]} </br> Teléfono:${ arrClientestorage[3]} </br> Email:${arrClientestorage[4]} </br> Monto:${arrClientestorage[5]} </br>Monto a devolver en un año:${resultado}</br></br>\n`;
         }
-      
+        
+// historial de transacciones
+//        transaccionData = JSON.parse(localStorage.getItem('transaccionData'));
+//        transaccionData.push(arrClientestorage);
+//        let transaccionDataJSON = JSON.stringify(transaccionData);
+//        localStorage.setItem('transaccionData',transaccionDataJSON)                     
+     
       listado.style.color='gold'
       listado.style.marginBottom='60px';
       contenidos.appendChild(listado);  
+
 
       //Crear boton 
       let btn2 = document.createElement("button");
