@@ -1,16 +1,18 @@
-// fetch a api 
-const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': 'AzLLJ7Ql85zQwUzxDx25ABGsFtCWwAqo8lRGP5mX',
-		'X-RapidAPI-Host': 'api.currencyapi.com'
-	}
-};
+// Solicitud GET (Request).
+fetch('http://ws.geeklab.com.ar/dolar/get-dolar-json.php')
+    // Exito
+    .then(response => response.json())  // convertir a json
+    .then(json => mostrarData(json))    //imprimir los datos en la consola
+    .catch(err => console.log('Solicitud fallida', err)); // Capturar errores
 
-fetch('https://api.currencyapi.com/v3/latest?apikey=AzLLJ7Ql85zQwUzxDx25ABGsFtCWwAqo8lRGP5mX&currencies=EUR%2CUSD%2CCAD&base_currency=ARS', options)
-	.then(response => response.json())
-	.then(response => console.log(response))
-	.catch(err => console.error(err));
+//Mostrar data 
+const mostrarData = (json)=>{
+        let cotizacion = document.createElement('div');        
+        logo2.appendChild(cotizacion);
+        logo2.style.color='gold'
+                console.log(json)
+                cotizacion.innerHTML +=`Dólar libre: ${json.libre} </br>Dólar blue: ${json.blue} </br>\n`;
+}
 
 //Constantes 
 const formulario = document.querySelector('#formulario');
@@ -70,19 +72,13 @@ formulario.addEventListener('submit',(event) => {
 
        for(elemento of arrClientestorage){
              listado.innerHTML =`Nombre: ${arrClientestorage[0]} </br> Apellido: ${arrClientestorage[1]} </br> Dirección:${arrClientestorage[2]} </br> Teléfono:${ arrClientestorage[3]} </br> Email:${arrClientestorage[4]} </br> Monto:${arrClientestorage[5]} </br>Monto a devolver en un año:${resultado}</br></br>\n`;
-        }
-        
-// historial de transacciones
-//        transaccionData = JSON.parse(localStorage.getItem('transaccionData'));
-//        transaccionData.push(arrClientestorage);
-//        let transaccionDataJSON = JSON.stringify(transaccionData);
-//        localStorage.setItem('transaccionData',transaccionDataJSON)                     
-     
+        }        
+
       listado.style.color='gold'
       listado.style.marginBottom='60px';
       contenidos.appendChild(listado);  
-
-
+       
+     
       //Crear boton 
       let btn2 = document.createElement("button");
       btn2.innerHTML = "Eliminar Registro";
