@@ -1,5 +1,5 @@
 // Solicitud GET (Request).
-fetch('http://ws.geeklab.com.ar/dolar/get-dolar-json.php')
+fetch('https://api.bluelytics.com.ar/v2/latest')
     // Exito
     .then(response => response.json())  // convertir a json
     .then(json => mostrarData(json))    //imprimir los datos en la consola
@@ -11,7 +11,7 @@ const mostrarData = (json)=>{
         logo2.appendChild(cotizacion);
         logo2.style.color='gold'
                 console.log(json)
-                cotizacion.innerHTML +=`Dólar libre: ${json.libre} </br>Dólar blue: ${json.blue} </br>\n`;
+                cotizacion.innerHTML +=`Dólar oficial compra: $ ${json.oficial.value_buy} </br>Dólar oficial venta: $${json.oficial.value_sell}</br>Dólar blue compra: $${json.blue.value_buy} </br>Dólar blue venta: $${json.blue.value_sell} </br>\n`;
 }
 
 //Constantes 
