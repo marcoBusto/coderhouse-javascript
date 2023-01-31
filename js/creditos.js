@@ -10,7 +10,6 @@ const mostrarData = (json)=>{
         let cotizacion = document.createElement('div');        
         logo2.appendChild(cotizacion);
         logo2.style.color='gold'
-                console.log(json)
                 cotizacion.innerHTML +=`Dólar oficial compra: $ ${json.oficial.value_buy} </br>Dólar oficial venta: $${json.oficial.value_sell}</br>Dólar blue compra: $${json.blue.value_buy} </br>Dólar blue venta: $${json.blue.value_sell} </br>\n`;
 }
 
